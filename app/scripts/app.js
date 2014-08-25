@@ -8,14 +8,15 @@
  *
  * Main module of the application.
  */
-var app = angular.module('angNewsApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch'
-  ])
+var app = angular.module('newsappApp', [
+  'ngCookies',
+  'ngResource',
+  'ngSanitize',
+  'ngRoute',
+  'firebase'
+]);
+
+app.constant('FIREBASE_URL', 'https://burning-inferno-7689.firebaseio.com/');
 
 app.config(function ($routeProvider) {
   $routeProvider
@@ -30,6 +31,10 @@ app.config(function ($routeProvider) {
     .when('/', {
       templateUrl: 'views/post.html',
       controller: 'PostCtrl'
+    })
+    .when('/posts/:postId', {
+      templateUrl: 'views/showpost.html',
+      controller: 'PostViewCtrl'
     })
     .otherwise({
       redirectTo: '/'
